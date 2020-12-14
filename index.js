@@ -52,6 +52,12 @@ function counter2() {
   return count++;
 }
 
+/*
+  1. counter1 uses a closure and counter2 uses a block-scoped variable
+  2. counter1 has a return function nested in another function, with a variable as a parent and the child setting the value, making it so the child inherits the paren't value of 0, but because the function's result is bound to counter1, it increments; but each variable (counter1, counter2, etc) keeps track of it's own count variable, because the parent count can't see the child count (due to closure) while the child inherits the parent value of 0, and returns 1
+  3. counter1 is required for when you want multiple variables to keep track of their values, counter2 for when you don't have multiple things to keep track of; counter1 follows DRY methodology; use when possible
+*/
+
 
 /* ⚾️⚾️⚾️ Task 2: inning() ⚾️⚾️⚾️
 Use the inning function below to do the following:
@@ -62,8 +68,11 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+  let score = 0;
+  return function(){
+    return (Math.floor(Math.random()*3));
+  }
 }
 
 
