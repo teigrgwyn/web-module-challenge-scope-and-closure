@@ -8,7 +8,7 @@
  *  2. Receive a callback function that takes a string as its argument in a parameter
  *  3. Return the result of invoking the callback function and passing in the FIRST 
  *     element in the array as the argument
- * 
+ *  
  * The following code is demonstrating a way of completing this task
  * It returns the string `foofoo`
 */
