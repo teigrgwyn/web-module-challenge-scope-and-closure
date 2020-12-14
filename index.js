@@ -87,13 +87,14 @@ Use the finalScore function below to do the following:
 }
 */
 
-function finalScore(callback, number){
-  let home, away = 0;
-  for (let i = 0; i < number; i++){
-    home = callback();
-    away = callback();
+function finalScore(callback, numInnings){
+  let home = 0;
+  let away = 0;
+  for (let i = 0; i < numInnings; i++){
+    away += callback();
+    home += callback();
   }
-  return {'Home': home, 'Away': away}
+  return {'Away': away, 'Home': home}
 }
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
@@ -102,7 +103,7 @@ Use the getInningScore() function below to do the following:
   2. Return an object with a score for home and a score for away that populates from invoking the inning callback function */
 
 function getInningScore(callback) {
-  return {'Home': callback(), 'Away': callback()}
+  return {'Away': callback(), 'Home': callback()}
 }
 
 
@@ -121,8 +122,8 @@ Use the scoreboard function below to do the following:
 [
   "Inning 1: Away 1 - Home 2", 
   "Inning 2: Away 2 - Home 1",
-  "Inning 3: Away 0 - Home 2", 
-  "Inning 4: Away 2 - Home 2", 
+  "Inning 3: Away 0 - Home 2",
+  "Inning 4: Away 2 - Home 2",
   "Inning 5: Away 2 - Home 0", 
   "Inning 6: Away 1 - Home 1", 
   "Inning 7: Away 0 - Home 2", 
@@ -147,11 +148,19 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-function scoreboard(getInningScore, inning, inningCount) {
-  for (let i = 0; i < inningCount; i++) {
-    return `Inning ${inningCount}: Away ${getInningScore} - Home ${getInningScore}`;
+/*
+  Notes:
+    - afaik correct as per the instructions, but if it were me, i'd get rid of finalScore() completely and do the function calls within scoreboard() so that i can keep track of both individual calls for line-prints, and the total for the end line-print
+*/
+//const tempArr = [];
+function scoreboard(getInningScore, inning, numInnings) {
+  for (let i = 0; i < numInnings; i++) {
+    tempArr.push(`Inning ${i}: Away ${getInningScore(inning)['Away']} - Home ${getInningScore(inning)['Home']}`);
   }
+  tempArr.push(`Final Score: Away ${finalScore(inning, numInnings)['Away']} - Home ${finalScore(inning, numInnings)['Home']}`);
 }
+//scoreboard(getInningScore, inning, 5);
+//console.log(tempArr);
 
 
 
