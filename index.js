@@ -151,16 +151,18 @@ Use the scoreboard function below to do the following:
 /*
   Notes:
     - afaik correct as per the instructions, but if it were me, i'd get rid of finalScore() completely and do the function calls within scoreboard() so that i can keep track of both individual calls for line-prints, and the total for the end line-print
+    - getInningScore and finalScore aren't connected in any way (and the instructions were followed), this is why each inning print and the total values don't match up; this is my reason for wanting to do the above comment
+    - inning() itself needs to hold these values so that they can be kept/stored/changed throughout the program; is this a bug or intentional?
 */
-//const tempArr = [];
+const tempArr = [];
 function scoreboard(getInningScore, inning, numInnings) {
   for (let i = 0; i < numInnings; i++) {
     tempArr.push(`Inning ${i}: Away ${getInningScore(inning)['Away']} - Home ${getInningScore(inning)['Home']}`);
   }
   tempArr.push(`Final Score: Away ${finalScore(inning, numInnings)['Away']} - Home ${finalScore(inning, numInnings)['Home']}`);
 }
-//scoreboard(getInningScore, inning, 5);
-//console.log(tempArr);
+scoreboard(getInningScore, inning, 5);
+console.log(tempArr);
 
 
 
